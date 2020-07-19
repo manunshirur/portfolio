@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Manu Shirur">
+        <meta name="description" content="Manu Shirur Portfolio">
+        <meta name="keywords" content="Manu, Shirur, Profile, Portfolio">
+        <title>My Space</title>
+        <!-- Using favicon of size 32px * 32 px -->
+        <link rel="icon" href="images/favicon.png">
+        <!-- Using External Style Sheet-->
+        <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
+    </head>
+    <body>
+        <header>
+            <div class="header-content">
+                <!-- On click on logo, it takes to Index/Home page-->
+                <a id="logo" href="/">
+                    <img src="images/logo.png" alt="logo"> 
+                </a> 
+                <h1>My _Space</h1> 
+            </div>
+        </header>
+        <!-- Navigation bar -->
+        <nav class="nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/schedule">Schedule</a></li>
+                <li><a href="/interests">Interests</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="#main-footer"><button class="play-button" onclick="showCanvasDiv()">Play >></button> </a></li>
+            </ul>
+        </nav>
+        <article>
+            <section id="showcase">
+                <div class="container">
+                    <h1>Manu Shirur</h1>
+                </div>
+            </section>
+            <section>
+                <div class="block">
+                    <img src="images/myPic.jpg" alt="Manu Shirur Picture">
+                </div>
+                <div class="block">
+                    <p>I am a Graduate Student of Computer Science at SIU Carbondale. 
+                        I am a Research Assistant, working on Data Visualizations
+                        using Tableau. I have worked as a Software Developer and have a prior experiece of 4+ years.
+                        I have worked in Business Intelligence domain, building data pipelines using
+                        <abbr title="Extract-Transform-Load">ETLs</abbr>
+                        to populate data in datawarehouses and building visualizations.
+                        I have used Tableau, Pentaho <abbr title="Community Dashboard Editor">CDE</abbr> for building dashboards
+                        and visualizations. 
+                    </p>
+                </div>
+            </section>
+            <aside class="sidebar">
+                <h3>Key Skills</h3>
+                <p>Python, Java, HTML, CSS, JavaScript, MySQL, MSSQL, 
+                    Redshift, Datawarehousing, Pentaho ETL tool, Tableau
+                </p>
+            </aside>
+            <div class="container" id="animation">
+                <canvas id="canvas" width="600" height="600" style="border: 1px solid black; margin-top: 15px;" onclick="captureClick(event)">
+                    Sorry!!! This page uses <code>canvas</code> and
+                    your browser doesn't support it. 
+                </canvas>
+                <div class="game-controls" id="game-controls" >
+                    <button id="stopStartAnimation" class="button" onclick="stopAndStartAnimation()">Pause</button>
+                    <button id="resetCanvas" class="button" onclick="resetExitCanvas(0)">Reset</button>
+                    <button id="exitCanvas" class="button" onclick="resetExitCanvas(1)">Exit</button>
+                </div>
+            </div>
+        </article>
+        <footer id="main-footer" class="clr">
+            <p>Copyright &copy;2020 Manu Shirur. Southern Illinois University, Carbondale</p>
+            Reach out at <address>manu.shirurnagabhushana@siu.edu</address>
+        </footer>
+        <script src="javascripts/main.js"></script>
+        <script src="javascripts/canvas.js"></script>
+    </body>
+</html>

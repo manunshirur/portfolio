@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Manu Shirur">
+        <meta name="description" content="Manu Shirur Portfolio">
+        <meta name="keywords" conetnt="Manu, Shirur, Profile, Portfolio">
+        <title>My Space</title>
+        <!-- Using favicon of size 32px * 32 px -->
+        <link rel="icon" href="/images/favicon.png">
+        <!-- Using External Style Sheet-->
+        <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
+    </head>
+    <body>
+        <header>
+            <div class="header-content">
+                <a id="logo" href="/">
+                    <img src="images/logo.png" alt="logo"> 
+                </a> 
+                <h1>My _Space</h1> 
+            </div>
+        </header>
+        <!-- Navigation bar -->
+        <nav class="nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/schedule">Schedule</a></li>
+                <li><a href="/interests">Interests</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="flex-wrapper">
+            <article>
+                <section>
+                    <div class="container border-background"> 
+                        <h3>Musics that I like</h3>
+                        <p>Neon Music - Glow</p>
+                        <audio controls loop>
+                            <source src="audios/neonbeatmusiclglow.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <p>Neon Beat Music - Level 3</p>
+                        <!--With two types of Audio files -->
+                        <audio controls loop>
+                            <source src="audios/neonbeatmusiclevel3.mp3" type="audio/mpeg">
+                            <source src="audios/neonbeatmusiclevel3.ogg" type="audio/ogg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </section>
+                <section>
+                    <div class="container border-background"> 
+                        <h3>Videos that I find interesting</h3>
+                        <p>Blockchain</p>
+                        <!-- Using iframe, as video size is big -->
+                        <iframe width="500" height="250" allowfullscreen
+                            src="https://www.youtube.com/embed/SSo_EIwHSd4">
+                        </iframe>
+                        <p>Cryptocurrencies</p>
+                        <!-- Using iframe, as video size is big -->
+                        <iframe width="500" height="250" allowfullscreen
+                            src="https://www.youtube.com/embed/Ja9D0kpksxw">
+                        </iframe>
+                    </div>
+                </section>
+                <section>
+                    <div class="container border-background">
+                        <h3>Places I like to Travel</h3>
+                        <!-- Table as display property -->
+                        <div class="table">
+                            <div class="row">
+                                <a href="https://www.visitlondon.com/" target="_blank"><img src="images/london.jpeg" width="200" height="200" title="London, UK" alt="London"></a>
+                                <a href="https://en.parisinfo.com/" target="_blank"><img src="images/paris.jpeg" width="200" height="200" title="Paris, France" alt="Paris"></a>
+                                <a href="https://www.visitnorway.com/" target="_blank"><img src="images/norway.jpeg" width="200" height="200" title="Norway, Europe" alt="Norway"></a>
+                            </div>
+                            <div class="row">
+                                <span>London, UK</span>
+                                <span>Paris, France</span>
+                                <span>Norway, Europe</span>
+                            </div>
+                            <div class="row">
+                                <a href="https://www.visitdubai.com/en/" target="_blank"><img src="images/dubai.jpg" width="200" height="200" title="Dubai, UAE" alt="Dubai"></a>
+                                <a href="https://www.myswitzerland.com/en-us/" target="_blank"><img src="images/switzerland.jpeg" width="200" height="200" title="Switzerland, Europe" alt="Switzerland"></a>
+                                <a href="https://www.goldengate.org/" target="_blank"><img src="images/golden_gate.jpeg" width="200" height="200" title="Golden Gate Bridge, San Francisco" alt="Golden Gate"></a>
+                            </div>
+                            <div class="row">
+                                <span>Dubai, UAE</span>
+                                <span>Switzerland, Europe</span>
+                                <span>Golden Gate Bridge, USA</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </article>
+            <footer id="main-footer" class="clr">
+                <p>Copyright &copy;2020 Manu Shirur. Southern Illinois University, Carbondale</p>
+                Reach out at <address>manu.shirurnagabhushana@siu.edu</address>
+            </footer>
+        </div>
+    </body>
+</html>
