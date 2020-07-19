@@ -83,7 +83,7 @@ router.route("/contact")
         // if (!sendEmail(email, name, fullUrl)) {
         //     return res.status(422).json({ errors: "Error Sending Email" });
         // }
-        res.sendStatus(200);
+        res.sendFile(path.join(__dirname, "../views/contact.html"));
     });
 
 
@@ -95,13 +95,13 @@ function sendEmail(email, name, url) {
         auth: {
         // user: process.env.CS350491EMAILUSER,
         // pass: process.env.CS350491EMAILPASS
-        user: 'n0r3p1y8n0r3p1y@gmail.com',
-        pass: 'Drowssap@156'
+        user: process.env.SENDER_EMAIL,
+        pass: process.env.SENDER_EMAIL_PASSWORD
         }
     });
 
     var mailOptions = {
-        from: 'n0r3p1y8n0r3p1y@gmail.com',
+        from: process.env.SENDER_EMAIL,
         to: email,
         subject: 'Confirmation Email',
         text: 'Dear ' + name + ', \n Thank you for your feedback! \n\n – From \nManuShirur@'+url
