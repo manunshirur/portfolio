@@ -21,6 +21,8 @@ function submitFeedbackForm(event){
         // Check for empty string, null, valid phone and email
         // phone can include: country code (+ and upto 3 digits) which is optional and 10 digits (123-456-7890)
         // email can incude special charactres like ., -, _  and domain can end with . followed bt 2 or 3 characters (io, com)
+        document.getElementById("success").innerHTML = "";
+
         if (name == "" || address == "" || phone == ""
         || email == "" || experience == "" || comments == ""
         || name === null || address  === null || phone === null 
@@ -30,12 +32,9 @@ function submitFeedbackForm(event){
             document.getElementById("error").innerHTML = "Please give a valid email address";
         } else if (!(/^\d{3}-\d{3}-\d{4}$/.test(phone))) {
             document.getElementById("error").innerHTML = "Please give a valid phone number";
-        }  else { 
+        }  else {
+            document.getElementById("error").innerHTML = ""; 
             return true;
-            // form.submit();
-            // alert("Thank You, " + name +" for your feedback!!!")   
-            // document.getElementById("error").innerHTML = ""; 
-            // window.location.reload();
         }
         return false;
     }

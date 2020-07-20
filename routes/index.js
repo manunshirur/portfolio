@@ -12,26 +12,25 @@ let router = express.Router();
 
 
 router.get("/", function (req, res){
-    console.log("In root");
-    res.sendFile(path.join(__dirname, "../views/index.htm"))
+    res.sendFile(path.join(__dirname, "../views/index.htm"));
 });
 
 
 router.get("/schedule", function (req, res){
-    console.log("IN here");
-    res.sendFile(path.join(__dirname, "../views/schedule.html"))
+    // res.sendFile(path.join(__dirname, "../views/schedule.html"));
+    res.render("schedule");
 });
 
 
 router.get("/interests", function (req, res){
-    res.sendFile(path.join(__dirname, "../views/interests.html"))
+    // res.sendFile(path.join(__dirname, "../views/interests.html"));
+    res.render("interests");
 });
 
 
 router.route("/contact")
    .get(function (req, res){
-        console.log("Here in Get");
-        res.sendFile(path.join(__dirname, "../views/contact.html"))
+        res.render("contact");
     })
     .post([
         // Server-side Validation using express-validator
@@ -63,7 +62,10 @@ router.route("/contact")
 
         fs.readFile('feedbacks.json', 'utf8', function readFileCallback(err, data){
             if (err) {
-                console.log(err)
+                res.render("contact", {
+                    errorMessage: "Sorry!! Error Sending Email",
+                    successMessage: "",
+                });
             } else {
                 const file = JSON.parse(data);
                 file.feedbacks.push(jsonObject);
@@ -71,50 +73,55 @@ router.route("/contact")
          
                 fs.writeFile('feedbacks.json', json, 'utf8', function(err){
                     if(err){ 
-                        console.log(err);
-                        return res.status(422).json({ errors: "Error Storing your feedback" });
+                        console.log("Written Unsuccesffully");
+                        res.render("contact", {
+                            errorMessage: "Sorry!! Error Storing your Feedback",
+                            successMessage: "",
+                        });
                     } else {
-                        console.log("Written  Succesffully")
+                        console.log("Written  Succesffully");
+                        var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+                        var sentEmailFlag = sendEmail(email, name, fullUrl);
+                        sentEmailFlag.then(function(response){
+                            console.log("Email sent Successfully");
+                            res.render("contact", {
+                                successMessage: "A Confirmation Email has been sent to you. Thank you.",
+                                errorMessage: ""});
+                        }).catch((err) => {
+                            console.log(err);
+                            console.log("Email Not sent Successfully");
+                            res.render("contact", {
+                                errorMessage: "Sorry!! Error Sending Email",
+                                successMessage: "",
+                            });    
+                        });
                 }});
             }
-         });
-
-        var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-        // if (!sendEmail(email, name, fullUrl)) {
-        //     return res.status(422).json({ errors: "Error Sending Email" });
-        // }
-        res.sendFile(path.join(__dirname, "../views/contact.html"));
     });
+        
+});
 
 
 
-function sendEmail(email, name, url) {
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        host: 'smtp.gmail.com',
-        auth: {
-        // user: process.env.CS350491EMAILUSER,
-        // pass: process.env.CS350491EMAILPASS
-        user: process.env.SENDER_EMAIL,
-        pass: process.env.SENDER_EMAIL_PASSWORD
+async function sendEmail(email, name, url) {
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            host: 'smtp.gmail.com',
+            auth: {
+                user: process.env.SENDER_EMAIL,
+                pass: process.env.SENDER_EMAIL_PASSWORD
+            }
+        });
+
+        var mailOptions = {
+            from: process.env.SENDER_EMAIL,
+            to: email,
+            subject: 'Confirmation Email',
+            text: 'Dear ' + name + ', \n Thank you for your feedback! \n\n – From \nManuShirur@'+url
         }
-    });
 
-    var mailOptions = {
-        from: process.env.SENDER_EMAIL,
-        to: email,
-        subject: 'Confirmation Email',
-        text: 'Dear ' + name + ', \n Thank you for your feedback! \n\n – From \nManuShirur@'+url
-    }
-
-    transporter.sendMail(mailOptions, (error, info) => {
-        if(error){
-            console.log(error);
-            return false;
-        }
-        console.log("Email Sent:", info.response);
-        return true;
-    });
+        let info = await transporter.sendMail(mailOptions);
+        console.log(info);
 }
 
 module.exports = router;

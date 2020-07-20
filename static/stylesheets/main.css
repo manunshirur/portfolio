@@ -245,6 +245,10 @@ table caption{
     color: red;
 }
 
+.success {
+    color: green;
+}
+
 .play-button {
     background-color: #065892;
     color: #fff;

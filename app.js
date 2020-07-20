@@ -6,8 +6,19 @@
 
 const express = require("express");
 const app = express();
+const path = require("path");
+const exphbs = require("express-handlebars");
 const port = process.env.PORT || 3000;
-const path = require("path")
+
+
+app.set("view engine", "hbs");
+app.engine("hbs", exphbs({
+    extname: 'hbs',
+    defaultLayout: 'main', 
+    layoutsDir: path.join(__dirname,"views/layouts")
+}));
+
+
 
 // Options while serving static files
 let options = {
