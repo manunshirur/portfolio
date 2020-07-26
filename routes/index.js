@@ -9,8 +9,8 @@ const { body, validationResult } = require('express-validator');
 // const nodemailer = require("nodemailer");
 // const fs = require("fs");
 const mongoose = require("mongoose");
-// var url = process.env.MONGODB_URI || "mongodb://localhost:27017/portfolio"
-var url = "mongodb+srv://monger:pihcimsia_0892@cluster0.pmvjm.mongodb.net/portfolio?retryWrites=true";
+var url = process.env.MONGODB_URI || "mongodb://localhost:27017/portfolio"
+
 mongoose.connect(url, {
     useNewUrlParser: true, 
     useUnifiedTopology: true
