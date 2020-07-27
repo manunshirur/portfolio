@@ -104,7 +104,10 @@ router.route("/contact")
                     if (results.length > 1) {
                         res.render("thankyou", {message: "Thank you for revisiting. Your feedback has been saved. Please Visit Again"});
                     } else {
-                        res.render("thankyou", {message: "Thank you for your feedback. Please Visit Again"});
+                        feedbackModel.distinct('email').countDocuments().exec(function (err, count) {
+                            res.render("thankyou", {message: "You are my " + count + 
+                            "th visitor. Thank you for your feedback. Please Visit Again"});
+                        });
                     }
                 });
             }
